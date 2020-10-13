@@ -1,0 +1,174 @@
+---
+title: "testemail"
+author: "Office of Marketing and Brand Management"
+date: "6/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(gt)
+library(blastula)
+library(tidyverse)
+library(ggplot2)
+library(glue)
+library(formattable)
+
+```
+
+```{r}
+
+
+# Create the plot data
+variety <- rep(LETTERS[1:7], each = 40)
+treatment <- rep(c("high", "low"), each = 20)
+note <- seq(1:280) + sample(1:150, 280, replace = TRUE)
+data <- data.frame(variety, treatment, note)
+
+# Create the plot
+the_plot <-
+  ggplot(data, aes(x = variety, y = note, fill = treatment)) + 
+  geom_boxplot()+theme_bw()
+
+
+
+# Send your ggplot to Imgur with a Client Key;
+# again, you get an <img> tag that works for email
+imgur_image <-
+   add_imgur_image(
+     image = the_plot,
+     client_id = "851117406f0b457"
+   )
+
+#
+# Create the `body_text` and then the
+# email message with `compose_email()`
+#
+body_text <-
+  glue(
+    "
+Hello,
+
+I just wanted to let you know that the *ggplot* you \\
+wanted to see is right here, in this email:
+
+{imgur_image}
+
+Cheers,
+
+christineiyer
+"
+  ) %>% md()
+
+compose_email(body = body_text) %>%
+  smtp_send(
+    to = "edithbird5@gmail.com",
+    from = "christine.iyer@maine.edu",
+    subject = "Testing the `Send Plot",
+    credentials = creds_key(id = "gmail")
+  )
+```
+
+```{r}
+imgur_image <-
+   add_imgur_image(
+     image = "C:/Users/christine.iyer/Box/FY21 Weekly Admissions Reports Summary to Inform Agency Campaigns/SampleTable.PNG",
+     client_id = "851117406f0b457"
+   )
+
+#
+# Create the `body_text` and then the
+# email message with `compose_email()`
+#
+body_text <-
+  glue(
+    "
+Hello,
+
+I just wanted to let you know that the *ggplot* you \\
+wanted to see is right here, in this email:
+
+{imgur_image}
+
+Cheers,
+
+christineiyer
+"
+  ) %>% md()
+
+compose_email(body = body_text) %>%
+  smtp_send(
+    to = "edithbird5@gmail.com",
+    from = "christine.iyer@maine.edu",
+    subject = "Testing Send PImage",
+    credentials = creds_key(id = "gmail")
+  )
+```
+
+```{r}
+# CappexNames <- read.csv("C:/Users/christine.iyer/Box/Cappex Leads FY20/FY20CappexLeads.csv", header = T, stringsAsFactors = F)
+# 
+# states <- c("ME", "NH", "MA", "CT")
+# Table <- CappexNames %>% 
+#   mutate(StateRegion = ifelse(State %in% states, "New England", "Outside NE")) %>% 
+#   group_by(State) %>% summarise(n = n()) 
+```
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+# Get a nicely formatted date/time string
+# date_time <- add_readable_time()
+# 
+# # Create an image string using an on-disk
+# # image file
+# img_file_path <-
+#   system.file(
+#     "img", "pexels-photo-267151.jpeg",
+#     package = "blastula"
+#   )
+# 
+# img_string <- add_image(file = img_file_path)
+# }
+# date_time <- add_readable_time()
+# formatted_table <- format_table(Table)
+# 
+# email <-
+#   compose_email(
+#     body = md(
+#       c(
+# "Hello,
+# 
+# This is a *great* table I found when looking
+# for looking through the data:
+# ",
+# formatted_table
+#       )
+#     ),
+# footer = md(
+#   c(
+#     "Email sent on ", date_time, "."
+#   )
+# )
+#   )
+```
+
+Imgur Data 
+Great! Now you can get started with the API!
+For public read-only and anonymous resources, such as getting image info, looking up user comments, etc. all you need to do is send an authorization header with your client_id in your requests. This also works if you'd like to upload images anonymously (without the image being tied to an account), or if you'd like to create an anonymous album. This lets us know which application is accessing the API.
+
+Authorization: Client-ID YOUR_CLIENT_ID
+
+For accessing a user's account, please visit the OAuth2 section of the docs.
+
+Client ID:
+851117406f0b457
+Client secret:
+7bae767f52737d95ed4136bb77b7c91738de21c8
+
+
+
+

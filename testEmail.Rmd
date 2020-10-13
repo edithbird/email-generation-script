@@ -86,6 +86,37 @@ dev.off()
 # kable(Sample)
 ```
 
+Hi John,
+
+I'm wondering if you have a little free time today for a zoom. 
+
+As I think I mentioned, now that the FileMaker is established, my role now is to incorporate the Weekly Admission Report into a simple quarterly summary that provides them with insights that will drive optimization of resources.
+
+In order to build this report, I want to make sure I understand it completely. One thing that confuses me is the admission period. The FM reports shift to the next academic year on September 1 while our fiscal summary runs through September 30. I'm trying to figure out if there is a way to see this same data quarterly
+
+Another question that I want clarification on  is making sure I'm pulling from the correct data fields in the reports. 
+
+The summary will ultimately look like the table attached 
+
+
+Thank you, 
+
+
+
+Christine Iyer
+
+Data Analyst  
+
+
+
+Office of Marketing and Brand Management 
+
+47 Exeter St. 
+
+Portland, ME 04102 
+
+Office: 207-780-4692
+
 ```{r}
 imgur_image <-
    add_imgur_image(
@@ -100,24 +131,39 @@ imgur_image <-
 body_text <-
   glue(
     "
-Hello,
+    
+    Hi John,
 
-I just wanted to let you know that the *ggplot* you \\
-wanted to see is right here, in this email:
+I'm wondering if you have a little free time today for a zoom. 
+
+As I think I mentioned, now that the FileMaker is established, \\
+I will now incorporate the Weekly Admission Reports into a \\
+simple quarterly summary that provides them with insights that will \\
+drive optimization of resources. \\
+
+In order to build this report, I want to make sure I understand it \\
+completely. One thing that confuses me is the admission period. Your reports \\
+shift to the next academic year on September 1 while our fiscal summary runs \\
+through September 30. I'm trying to figure out if there is a way to see this same data quarterly.\\
+
+Another question that I want clarification on is making sure I'm pulling \\
+from the correct data fields in the reports. \\
+
+The summary will ultimately look like this table \\
 
 {imgur_image}
 
 Cheers,
 
-christineiyer
+Christine Iyer
 "
   ) %>% md()
 
 compose_email(body = body_text) %>%
   smtp_send(
-    to = "edithbird5@gmail.com",
+    to = "john.tabor@maine.edu",
     from = "christine.iyer@maine.edu",
-    subject = "Testing Send PImage",
+    subject = "Weekly Admissions Reports",
     credentials = creds_key(id = "gmail")
   )
 ```

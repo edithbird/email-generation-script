@@ -73,10 +73,23 @@ compose_email(body = body_text) %>%
   )
 ```
 
+Save Table as Image to Imgur then send as Email
+
+
+```{r}
+
+#save table as image
+Sample <- read.csv("C:/Users/christine.iyer/Box/FY21 Weekly Admissions Reports Summary to Inform Agency Campaigns/Sample.csv", header = T, stringsAsFactors = F)
+png("C:/Users/christine.iyer/Box/FY21 Weekly Admissions Reports Summary to Inform Agency Campaigns/output.png", width=480,height=480,bg = "white")
+grid.table(Sample)
+dev.off()
+# kable(Sample)
+```
+
 ```{r}
 imgur_image <-
    add_imgur_image(
-     image = "C:/Users/christine.iyer/Box/FY21 Weekly Admissions Reports Summary to Inform Agency Campaigns/SampleTable.PNG",
+     image = "C:/Users/christine.iyer/Box/FY21 Weekly Admissions Reports Summary to Inform Agency Campaigns/output.png",
      client_id = "851117406f0b457"
    )
 
@@ -108,6 +121,8 @@ compose_email(body = body_text) %>%
     credentials = creds_key(id = "gmail")
   )
 ```
+
+## Alternatively, can just send an image by skoipping the 
 
 ```{r}
 # CappexNames <- read.csv("C:/Users/christine.iyer/Box/Cappex Leads FY20/FY20CappexLeads.csv", header = T, stringsAsFactors = F)
